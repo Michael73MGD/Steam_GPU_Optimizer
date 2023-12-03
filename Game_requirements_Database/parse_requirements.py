@@ -33,9 +33,26 @@ for game in games_db:
 
 games_db_file.close()
 
-organized_games_df = pd.DataFrame(organized_games_db)
-organized_games_df.to_csv('organized_games_database.csv', index=False, header=None)
+# organized_games_df = pd.DataFrame(organized_games_db)
+# organized_games_df.to_csv('organized_games_database.csv', index=False, header=None)
 
 # Now, we need to search those graphics requirements for names of GPUs
 # This could go in a separate file but I'm doing it here for now, it gets the list of GPUs from the GPU Database
 
+GPU_df = pd.read_csv('../GPU_Database/organized_GPU_database.csv')
+GPU_list = GPU_df.values.tolist()
+final_games_list= []
+
+for game in organized_games_db:
+    requirements = game[1]
+
+    for GPU_row in GPU_list:
+        if GPU_row[0] in requirements:
+            print(GPU_row[0])
+            final_games_list.append([game[0], GPU_row[0], GPU_row[1]])
+
+            break
+
+
+organized_games_df = pd.DataFrame(final_games_list)
+organized_games_df.to_csv('organized_games_database.csv', index=False, header=None)
