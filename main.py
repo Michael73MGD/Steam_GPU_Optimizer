@@ -29,7 +29,7 @@ for gpu_info in GPU_list:
         percent = float(playable)/(unplayable + playable)*100
         result = [gpu_info[0], gpu_info[1], gpu_info[2], playable, unplayable, percent]
         results.append(result)
-        if gpu_info[2] < 1000:
+        if gpu_info[2] < 1500:
             price_percent.append([gpu_info[2],percent])
 
 gpu_analysis = pd.DataFrame(results)
@@ -41,5 +41,6 @@ x, y = zip(*price_percent)
 
 plt.scatter(x, y)
 plt.title("Price to Performance")
-plt.show()
+
 plt.savefig("Price to Performance.png")
+plt.show()
