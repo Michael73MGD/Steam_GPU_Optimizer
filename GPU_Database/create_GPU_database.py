@@ -27,4 +27,4 @@ for i in range(0, len(df), 3):
 organized_df = pd.DataFrame(organized)
      
 # Save the dataframe to csv
-organized_df.to_csv('organized_GPU_database.csv', index=False, header=None)
+organized_df.to_csv('organized_GPU_database.csv', index=False, header=["GPU", "Score", "Price"])

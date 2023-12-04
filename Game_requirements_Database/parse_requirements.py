@@ -57,5 +57,5 @@ for game in organized_games_db:
 
 
 organized_games_df = pd.DataFrame(final_games_list)
-organized_games_df.to_csv('organized_games_database.csv', index=False, header=None)
+organized_games_df.to_csv('organized_games_database.csv', index=False, header=['Game', 'GPU', 'Minimum Score'])
 print('File saved to csv')
