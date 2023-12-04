@@ -15,7 +15,7 @@ games_list = games_df.values.tolist()
 results = []
 price_percent = []
 for gpu_info in GPU_list:
-    if gpu_info[2] == 0.0:
+    if gpu_info[2] == 0.0 or gpu_info[1] < 1000:
         continue
     else:
         # print(gpu_info[0], 'scores', gpu_info[1])

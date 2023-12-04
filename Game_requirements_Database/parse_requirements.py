@@ -54,7 +54,8 @@ for game in organized_games_db:
     for GPU_row in GPU_list:
         if GPU_row[0] in requirements:
             # print(GPU_row[0])
-            final_games_list.append([game[0], GPU_row[0], GPU_row[1]])
+            if GPU_row[1] > 1000:
+                final_games_list.append([game[0], GPU_row[0], GPU_row[1]])
 
             break
 
