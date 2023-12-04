@@ -15,9 +15,12 @@ games_db = json.load(games_db_file)
 organized_games_db = []
 for game in games_db:
     name = games_db[game]['name']
-    pc_requirements = games_db[game]['pc_requirements'] #['minimum']
+    pc_requirements = games_db[game]['pc_requirements']
     if type(pc_requirements) == dict and 'minimum' in pc_requirements.keys():
-        min_spec = pc_requirements['minimum']
+        if 'recommended' in pc_requirements.keys():
+            min_spec = pc_requirements['recommended']
+        else:
+            min_spec = pc_requirements['minimum']
         cleaned_pc_reqs = re.sub('<.*?>', '', min_spec).replace('\n', '')
         if 'Graphics: ' in cleaned_pc_reqs:
             graphics = cleaned_pc_reqs.split('Graphics: ')[1]
