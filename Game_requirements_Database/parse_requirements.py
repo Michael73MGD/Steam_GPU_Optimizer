@@ -9,7 +9,7 @@ import pandas as pd
 #         },
 
 print('Reading Games Database')
-games_db_file = open('../Steam-Games-Scraper/games_30_percent.json', encoding='utf-8')
+games_db_file = open('../Steam-Games-Scraper/games.json', encoding='utf-8')
 games_db = json.load(games_db_file)
 
 organized_games_db = []
