@@ -27,15 +27,18 @@ for gpu_info in GPU_list:
             else:
                 unplayable += 1
         percent = float(playable)/(unplayable + playable)*100
-        result = [gpu_info[0], gpu_info[1], gpu_info[2], playable, unplayable, percent]
+        playable_per_dollar = percent/gpu_info[2]
+        result = [gpu_info[0], gpu_info[1], gpu_info[2], playable, unplayable, percent, playable_per_dollar]
         results.append(result)
         if gpu_info[2] < 1500:
             price_percent.append([gpu_info[2],percent])
 
 gpu_analysis = pd.DataFrame(results)
-gpu_analysis.to_csv('gpu_analysis.csv', index=False, header=['GPU', 'Score', 'Price', 'Playable Games', 'Unplayable Games', 'Percent Playable'])
+gpu_analysis.to_csv('gpu_analysis.csv', index=False, header=['GPU', 'Score', 'Price', 'Playable Games', 'Unplayable Games', 'Percent Playable', 'Percent Playable per dollar'])
 print('File saved to csv')
 
+optimized = gpu_analysis.sort_values(6, ascending=False)
+optimized.to_csv('optimized.csv', index=False, header=['GPU', 'Score', 'Price', 'Playable Games', 'Unplayable Games', 'Percent Playable', 'Percent Playable per dollar'])
 
 x, y = zip(*price_percent)
 
